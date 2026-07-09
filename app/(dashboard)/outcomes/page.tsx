@@ -1,0 +1,1 @@
+export default function OutcomesPage(){ return <><h1>Outcomes</h1><section className="card"><h2>Analytics</h2><p>Track response rates, stage conversion, offers, rejections, compensation notes, feedback, and follow-up timing.</p></section></> }

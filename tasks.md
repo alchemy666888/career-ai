@@ -2,41 +2,41 @@
 
 ## Phase 0: Repository assessment
 
-- [ ] Inspect the existing repository structure and identify whether a Next.js app already exists.
-- [ ] Record current package manager, scripts, framework versions, TypeScript settings, styling approach, and test tooling.
-- [ ] Identify any non-Next.js backend code and classify it as reusable business logic, migration candidate, or removal candidate.
-- [ ] Confirm there are no committed secrets or production `.env` files.
+- [x] Inspect the existing repository structure and identify whether a Next.js app already exists.
+- [x] Record current package manager, scripts, framework versions, TypeScript settings, styling approach, and test tooling.
+- [x] Identify any non-Next.js backend code and classify it as reusable business logic, migration candidate, or removal candidate.
+- [x] Confirm there are no committed secrets or production `.env` files.
 
 ## Phase 1: Next.js foundation
 
-- [ ] Ensure the project is a pure Next.js application using the App Router unless a strong repository constraint requires otherwise.
-- [ ] Add or verify TypeScript configuration.
-- [ ] Add or verify linting, formatting, and test scripts.
-- [ ] Establish route groups for auth, dashboard, profile, jobs, applications, interviews, outcomes, and settings.
-- [ ] Create a shared layout, navigation shell, loading states, error boundaries, and empty states.
+- [x] Ensure the project is a pure Next.js application using the App Router unless a strong repository constraint requires otherwise.
+- [x] Add or verify TypeScript configuration.
+- [x] Add or verify linting, formatting, and test scripts.
+- [x] Establish route groups for auth, dashboard, profile, jobs, applications, interviews, outcomes, and settings.
+- [x] Create a shared layout, navigation shell, loading states, error boundaries, and empty states.
 
 ## Phase 2: Vercel readiness
 
 - [ ] Verify the app builds with the standard Vercel Next.js preset.
 - [ ] Remove assumptions about persistent local filesystem writes in production.
-- [ ] Document Vercel project creation and deployment steps.
-- [ ] Add `.env.example` with placeholders only.
-- [ ] Add centralized environment validation for all required server and client variables.
-- [ ] Document which variables must be configured in Vercel Cloud for production and preview.
+- [x] Document Vercel project creation and deployment steps.
+- [x] Add `.env.example` with placeholders only.
+- [x] Add centralized environment validation for all required server and client variables.
+- [x] Document which variables must be configured in Vercel Cloud for production and preview.
 
 ## Phase 3: PostgreSQL data layer
 
-- [ ] Select the database toolkit: Prisma, Drizzle, Kysely, or another TypeScript-friendly option.
-- [ ] Configure PostgreSQL access using a Vercel-compatible connection approach.
-- [ ] Define migrations for users, profiles, profile sections, evidence items, jobs, searches, evaluations, applications, artifacts, interview preps, outcomes, and audit events.
+- [x] Select the database toolkit: Prisma, Drizzle, Kysely, or another TypeScript-friendly option.
+- [x] Configure PostgreSQL access using a Vercel-compatible connection approach.
+- [x] Define migrations for users, profiles, profile sections, evidence items, jobs, searches, evaluations, applications, artifacts, interview preps, outcomes, and audit events.
 - [ ] Add migration scripts for local and production workflows.
 - [ ] Add seed or fixture data only if it does not include real personal data.
 - [ ] Add database access helpers that require authenticated user context.
 
 ## Phase 4: Authentication and authorization
 
-- [ ] Choose an authentication approach compatible with Next.js and Vercel.
-- [ ] Configure provider secrets exclusively through environment variables.
+- [x] Choose an authentication approach compatible with Next.js and Vercel.
+- [x] Configure provider secrets exclusively through environment variables.
 - [ ] Protect dashboard routes through middleware or server-side redirects.
 - [ ] Add server-side authorization checks for every user-owned read and write.
 - [ ] Add tests for cross-user access denial.
@@ -60,19 +60,19 @@
 
 ## Phase 7: Fit evaluation
 
-- [ ] Define scoring rubric and structured evaluation output schema.
+- [x] Define scoring rubric and structured evaluation output schema.
 - [ ] Implement server-side evaluation flow using profile data, evidence, preferences, constraints, and job text.
 - [ ] Persist evaluation scores, explanations, deal-breakers, confidence, and recommendations.
 - [ ] Display evaluations on the job detail page.
-- [ ] Add tests for deal-breaker veto behavior and explainable scoring.
+- [x] Add tests for deal-breaker veto behavior and explainable scoring.
 
 ## Phase 8: Application drafting
 
-- [ ] Define application artifact types and versioning rules.
+- [x] Define application artifact types and versioning rules.
 - [ ] Implement draft generation from approved profile evidence and target job data.
 - [ ] Store draft metadata, source references, approval state, and versions in PostgreSQL.
 - [ ] Build application workspace UI for reviewing and editing drafts.
-- [ ] Add safeguards that flag unsupported claims and require user approval before finalization.
+- [x] Add safeguards that flag unsupported claims and require user approval before finalization.
 
 ## Phase 9: Interview preparation
 
@@ -98,8 +98,8 @@
 
 ## Phase 12: Testing, documentation, and release
 
-- [ ] Add or update README with local setup, database setup, Vercel deployment, and environment variable instructions.
-- [ ] Add unit tests for domain logic.
+- [x] Add or update README with local setup, database setup, Vercel deployment, and environment variable instructions.
+- [x] Add unit tests for domain logic.
 - [ ] Add integration tests for route handlers or server actions.
 - [ ] Add end-to-end smoke tests for sign-in, profile creation, job creation, evaluation, application drafting, and outcome recording where practical.
 - [ ] Run lint, type check, tests, migrations, and production build.

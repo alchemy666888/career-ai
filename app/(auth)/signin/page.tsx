@@ -1,0 +1,1 @@
+export default function SignInPage(){ return <main className="container"><section className="card"><h1>Sign in</h1><p>Configure an Auth.js provider in Vercel Cloud, then use /api/auth/signin for provider authentication.</p><a className="btn" href="/api/auth/signin">Continue</a></section></main> }

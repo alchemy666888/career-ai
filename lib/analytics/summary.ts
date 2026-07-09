@@ -1,0 +1,1 @@
+export async function getDashboardSummary() { return { cards: [ { label: "Active jobs", value: "0", detail: "Connect PostgreSQL and add jobs to populate your pipeline." }, { label: "Applications", value: "0", detail: "Drafts require approved evidence and user review." }, { label: "Interviews", value: "0", detail: "Prep records are linked to application stages." } ] }; }
