@@ -1,9 +1,11 @@
-import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import GitHub from "next-auth/providers/github";
 
-const providers = process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET ? [GitHub({ clientId: process.env.AUTH_GITHUB_ID, clientSecret: process.env.AUTH_GITHUB_SECRET })] : [];
+const providers = process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET
+  ? [GitHub({ clientId: process.env.AUTH_GITHUB_ID, clientSecret: process.env.AUTH_GITHUB_SECRET })]
+  : [];
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers,
   session: { strategy: "jwt" },
   callbacks: {
@@ -12,4 +14,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     }
   }
-});
+};
