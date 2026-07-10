@@ -578,6 +578,70 @@ select:focus,
   backdrop-filter: saturate(180%) blur(20px);
 }
 
+.dashboard-next-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 113, 227, 0.12), transparent 18rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(251, 251, 253, 0.86));
+  color: var(--apple-ink);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-next-action::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--apple-blue);
+}
+
+.dashboard-next-action h2 {
+  margin: 8px 0 0;
+  max-width: 720px;
+  color: var(--apple-ink);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+.dashboard-next-action-kicker {
+  margin: 0;
+  color: var(--apple-blue);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-next-action-meta {
+  margin: 14px 0 0;
+  color: var(--apple-muted);
+  font-size: 16px;
+}
+
+.dashboard-next-action a {
+  flex: 0 0 auto;
+  color: #fff;
+  border-color: transparent;
+}
+
+@media (max-width: 680px) {
+  .dashboard-next-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dashboard-next-action a {
+    width: 100%;
+  }
+}
+
 
 /* Targeted sizing refinements for journey action controls */
 .career-btn-compact-centered {
