@@ -34,6 +34,19 @@ const workflowCards = [
 export default function HomePage() {
   return (
     <main className="landing-page">
+      <header className="landing-header" aria-label="Primary navigation">
+        <Link className="landing-brand" href="/">
+          AI Job Search
+        </Link>
+        <nav className="landing-auth-nav" aria-label="Account access">
+          <Link className="career-btn secondary" href="/signin">
+            Login
+          </Link>
+          <Link className="career-btn" href="/signup">
+            Sign Up
+          </Link>
+        </nav>
+      </header>
       <section className="landing-hero">
         <div className="landing-hero-copy">
           <span className="landing-eyebrow">AI Job Search</span>
@@ -43,9 +56,6 @@ export default function HomePage() {
             prepare for interviews, and learn from outcomes—without automatic external submissions.
           </p>
           <div className="landing-actions">
-            <Link className="career-btn" href="/dashboard">
-              Open workspace
-            </Link>
             <Link className="career-btn secondary" href="/jobs">
               Explore jobs
             </Link>
