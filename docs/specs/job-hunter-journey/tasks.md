@@ -164,7 +164,7 @@ The final documentation task consolidates:
 
 ## T01 — Establish the implementation branch and approved specification baseline
 
-- [ ] Complete T01.
+- [x] Complete T01.
 
 **Requirements:** DEP-001, DEP-003, DEP-004, NFR-MAINT-001, NFR-MAINT-004  
 **Dependencies:** None
@@ -231,7 +231,7 @@ chore(spec): add approved job hunter journey specifications
 
 ## T02 — Add validated environment configuration and feature flags
 
-- [ ] Complete T02.
+- [x] Complete T02.
 
 **Requirements:** AI-003, AI-008, AUTH-004, JOB-002, JOB-003, DEP-003, DEP-004, NFR-SEC-004, NFR-MAINT-002  
 **Dependencies:** T01
