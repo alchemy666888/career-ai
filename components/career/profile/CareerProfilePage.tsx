@@ -1,5 +1,61 @@
 "use client";
-import { useState } from "react";
-import { useJourney } from "../journey/JourneyProvider";
-import { ConfirmDialog, Progress } from "../ui/Primitives";
-export function CareerProfilePage(){const {state,dispatch}=useJourney(); const [headline,setHeadline]=useState(state.profile.headline); const [reset,setReset]=useState(false); return <section className="career-container cj-page-head"><h1>Profile</h1><p>{state.profile.resumeSource}. Nothing is persisted to a server.</p><Progress value={state.profile.completeness} label="Profile completeness"/><article className="cj-card"><h2>Next useful field</h2><p>{state.profile.nextField}</p></article><article className="cj-card"><h2>Preferences</h2><label>Headline<textarea value={headline} onChange={e=>setHeadline(e.target.value)}/></label><button className="career-btn" onClick={()=>dispatch({type:"updateProfile",profile:{headline}})}>Save locally</button><div className="career-chip-zone">{state.profile.targetRoles.concat(state.profile.preferences).map(x=><span className="career-chip" key={x}>{x}</span>)}</div></article><article className="cj-card"><h2>Skills</h2><div className="career-chip-zone">{state.profile.skills.map(s=><span className="career-chip" key={s}>{s}</span>)}</div></article><article className="cj-card"><h2>Work history</h2><ul>{state.profile.history.map(h=><li key={h}>{h}</li>)}</ul></article><article className="cj-card"><h2>Evidence and STAR stories</h2><div className="cj-grid">{state.profile.evidence.map(e=><section className="cj-card" key={e.id}><h3>{e.title}</h3><p>{e.summary}</p><span className="cj-badge">{e.provenance}</span><p><strong>Result:</strong> {e.star.result}</p></section>)}</div></article><button className="career-btn ghost" onClick={()=>setReset(true)}>Reset demo data</button><ConfirmDialog open={reset} title="Reset demo data?" description="This restores fixture roles, notes, and profile fields in this browser only." confirmLabel="Reset" onCancel={()=>setReset(false)} onConfirm={()=>{dispatch({type:"reset"});setReset(false)}}/></section>}
+import { useActionState } from "react";
+import { saveProfileAction } from "@/app/(dashboard)/profile/actions";
+import { importResumeAction } from "@/app/(dashboard)/profile/resume-actions";
+import { Progress } from "../ui/Primitives";
+
+type Props = {
+  profile: {
+    id: string;
+    name?: string | null;
+    headline?: string | null;
+    summary?: string | null;
+    location?: string | null;
+    workStyle: string;
+    targetRoles: unknown;
+    preferredLocations: unknown;
+    skills: string[];
+    experience: string[];
+    education: string[];
+    nextRecommendedAction: string;
+  };
+  completeness: { score: number; nextRecommendedAction: string };
+};
+
+const join = (value: unknown) => Array.isArray(value) ? value.join(", ") : "";
+
+export function CareerProfilePage({ profile, completeness }: Props) {
+  const [state, formAction, pending] = useActionState(saveProfileAction, null);
+  const [resumeState, resumeAction, resumePending] = useActionState(importResumeAction, null);
+  return (
+    <section className="career-container cj-page-head" aria-labelledby="profile-title">
+      <h1 id="profile-title">Profile</h1>
+      <p>Your profile is saved securely and used as evidence for job matching and application materials.</p>
+      <Progress value={completeness.score} label="Profile completeness" />
+      <article className="cj-card" aria-live="polite"><h2>Next useful field</h2><p>{completeness.nextRecommendedAction}</p></article>
+      <form action={resumeAction} className="cj-card" aria-describedby="resume-status">
+        <h2>Import résumé</h2>
+        <p>Upload a PDF or DOCX up to 10 MB. Original file bytes are processed transiently and not stored.</p>
+        <label>Résumé file<input name="resume" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /></label>
+        <button className="career-btn" type="submit" disabled={resumePending}>{resumePending ? "Importing…" : "Import résumé"}</button>
+        <p id="resume-status" role="status">{resumeState?.message}</p>
+      </form>
+      <form action={formAction} className="cj-card" aria-describedby="profile-status">
+        <input type="hidden" name="profileId" value={profile.id} />
+        <h2>Professional profile</h2>
+        <label>Name<input name="name" defaultValue={profile.name ?? ""} /></label>
+        <label>Headline<textarea name="headline" defaultValue={profile.headline ?? ""} /></label>
+        <label>Summary<textarea name="summary" defaultValue={profile.summary ?? ""} /></label>
+        <label>Location<input name="location" defaultValue={profile.location ?? ""} /></label>
+        <label>Target roles<input name="targetRoles" defaultValue={join(profile.targetRoles)} placeholder="Marketing manager, Product designer" /></label>
+        <label>Preferred locations<input name="preferredLocations" defaultValue={join(profile.preferredLocations)} placeholder="United States, Singapore, Remote" /></label>
+        <label>Skills<input name="skills" defaultValue={join(profile.skills)} /></label>
+        <label>Experience highlights<input name="experience" defaultValue={join(profile.experience)} /></label>
+        <label>Education<input name="education" defaultValue={join(profile.education)} /></label>
+        <label>Work style<select name="workStyle" defaultValue={profile.workStyle}><option value="unknown">Flexible</option><option value="remote">Remote</option><option value="hybrid">Hybrid</option><option value="onsite">On-site</option></select></label>
+        <button className="career-btn" type="submit" disabled={pending}>{pending ? "Saving…" : "Save profile"}</button>
+        <p id="profile-status" role="status">{state?.message}</p>
+      </form>
+    </section>
+  );
+}

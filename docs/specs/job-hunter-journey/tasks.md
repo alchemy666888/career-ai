@@ -164,7 +164,7 @@ The final documentation task consolidates:
 
 ## T01 — Establish the implementation branch and approved specification baseline
 
-- [ ] Complete T01.
+- [x] Complete T01.
 
 **Requirements:** DEP-001, DEP-003, DEP-004, NFR-MAINT-001, NFR-MAINT-004  
 **Dependencies:** None
@@ -231,7 +231,7 @@ chore(spec): add approved job hunter journey specifications
 
 ## T02 — Add validated environment configuration and feature flags
 
-- [ ] Complete T02.
+- [x] Complete T02.
 
 **Requirements:** AI-003, AI-008, AUTH-004, JOB-002, JOB-003, DEP-003, DEP-004, NFR-SEC-004, NFR-MAINT-002  
 **Dependencies:** T01
@@ -295,7 +295,7 @@ feat(config): add validated environment and feature flags
 
 ## T03 — Rebuild the Drizzle schema and forward-only migration foundation
 
-- [ ] Complete T03.
+- [x] Complete T03.
 
 **Requirements:** BR-002, BR-006, BR-008, AUTH-005, PROF-001, RES-002, JOB-006, MATCH-002, TAILOR-006, TAILOR-009, TRACK-001, TRACK-004, PRIV-003, AI-010, NFR-COMP-002, NFR-COMP-003  
 **Dependencies:** T02
@@ -378,7 +378,7 @@ feat(db): rebuild journey schema and migrations
 
 ## T04 — Implement database client, repositories, transactions, and test-database utilities
 
-- [ ] Complete T04.
+- [x] Complete T04.
 
 **Requirements:** BR-006, NFR-SEC-001, NFR-PERF-001, NFR-PERF-004, NFR-REL-002, NFR-MAINT-002, NFR-MAINT-003, NFR-COMP-001, NFR-COMP-002  
 **Dependencies:** T03
@@ -443,7 +443,7 @@ feat(core): add repositories and transactional data access
 
 ## T05 — Implement Auth.js providers, database sessions, and administrator authorization
 
-- [ ] Complete T05.
+- [x] Complete T05.
 
 **Requirements:** AUTH-001 through AUTH-006, ADMIN-001, ADMIN-005, BR-006, NFR-SEC-001, NFR-SEC-004, NFR-COMP-004  
 **Dependencies:** T04
@@ -511,7 +511,7 @@ feat(auth): add providers sessions and authorization
 
 ## T06 — Add structured logging, correlation context, OpenTelemetry, and Sentry foundations
 
-- [ ] Complete T06.
+- [x] Complete T06.
 
 **Requirements:** NFR-OBS-001 through NFR-OBS-014, NFR-REL-003, NFR-REL-004, NFR-PRIV-001, PRIV-002, DEP-003  
 **Dependencies:** T02, T05
@@ -585,7 +585,7 @@ feat(observability): add logging tracing and error capture
 
 ## T07 — Add shared audit, quota, background-job, and action infrastructure
 
-- [ ] Complete T07.
+- [x] Complete T07.
 
 **Requirements:** BR-007, BR-008, AI-006 through AI-010, JOB-003, ADMIN-004, NFR-REL-001 through NFR-REL-004, NFR-SEC-007, NFR-OBS-004, NFR-OBS-010  
 **Dependencies:** T03, T04, T05, T06
@@ -654,7 +654,7 @@ feat(core): add audit quotas background jobs and wrappers
 
 ## T08 — Persist profile management and completeness
 
-- [ ] Complete T08.
+- [x] Complete T08.
 
 **Requirements:** PROF-001 through PROF-003, BR-001 through BR-003, BR-006, UX-001 through UX-005, NFR-A11Y-001 through NFR-A11Y-004  
 **Dependencies:** T04, T05, T06, T07
@@ -711,7 +711,7 @@ feat(profile): persist profile management and completeness
 
 ## T09 — Implement secure PDF and DOCX résumé parsing and first import
 
-- [ ] Complete T09.
+- [x] Complete T09.
 
 **Requirements:** RES-001 through RES-003, RES-005, BR-001 through BR-003, NFR-SEC-003, NFR-PERF-003, NFR-OBS-006 through NFR-OBS-010  
 **Dependencies:** T08

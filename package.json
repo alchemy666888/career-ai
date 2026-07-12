@@ -12,7 +12,9 @@
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:check": "drizzle-kit check"
+    "db:check": "drizzle-kit check",
+    "db:reset:dev": "node scripts/db/reset-dev.mjs",
+    "db:seed:dev": "node scripts/db/seed-dev.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "latest",
@@ -23,7 +25,12 @@
     "postgres": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "zod": "latest"
+    "zod": "latest",
+    "@opentelemetry/api": "1.9.0",
+    "@sentry/nextjs": "8.47.0",
+    "@vercel/otel": "1.11.0",
+    "pdf-parse": "1.1.1",
+    "mammoth": "1.9.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "latest",
