@@ -39,12 +39,12 @@ export default function HomePage() {
         <Link className="landing-brand" href="/">
           <Image className="landing-brand-logo" src="/careerai-logo.svg" alt="CareerAI" width={190} height={50} priority />
         </Link>
-        <nav className="landing-auth-nav" aria-label="Account access">
-          <Link className="career-btn secondary" href="/signin">
-            Login
+        <nav className="landing-auth-nav" aria-label="Primary app links">
+          <Link className="career-btn secondary" href="/jobs">
+            Explore jobs
           </Link>
-          <Link className="career-btn" href="/signup">
-            Sign Up
+          <Link className="career-btn" href="/dashboard">
+            Open dashboard
           </Link>
         </nav>
       </header>
