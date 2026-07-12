@@ -1,4 +1,5 @@
 export async function register() {
+  if (process.env.NEXT_RUNTIME !== "nodejs") return;
   if (process.env.OTEL_ENABLED !== "false") {
     const otel = await import("@vercel/otel").catch(() => null);
     otel?.registerOTel?.({ serviceName: "ai-job-search" });
