@@ -99,6 +99,7 @@ export const resumeSources = pgTable("resume_sources", {
   mimeType: text("mime_type").notNull(),
   sizeBytes: integer("size_bytes").notNull(),
   extractedText: text("extracted_text").notNull(),
+  sourceHash: text("source_hash").notNull(),
   parserVersion: text("parser_version").notNull(),
   deletedAt: timestamp("deleted_at", { withTimezone: true }),
   ...timestamps

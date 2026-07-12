@@ -711,7 +711,7 @@ feat(profile): persist profile management and completeness
 
 ## T09 — Implement secure PDF and DOCX résumé parsing and first import
 
-- [ ] Complete T09.
+- [x] Complete T09.
 
 **Requirements:** RES-001 through RES-003, RES-005, BR-001 through BR-003, NFR-SEC-003, NFR-PERF-003, NFR-OBS-006 through NFR-OBS-010  
 **Dependencies:** T08

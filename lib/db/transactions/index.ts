@@ -36,10 +36,10 @@ export async function replaceCoverLetter(db: Database, input: { userId: string; 
   });
 }
 
-export async function replaceResumeSource(db: Database, input: { userId: string; profileId: string; fileName: string; mimeType: string; sizeBytes: number; extractedText: string; parserVersion: string }) {
+export async function replaceResumeSource(db: Database, input: { userId: string; profileId: string; fileName: string; mimeType: string; sizeBytes: number; extractedText: string; parserVersion: string; sourceHash?: string }) {
   return db.transaction(async (tx) => {
     await tx.update(resumeSources).set({ deletedAt: new Date() }).where(eq(resumeSources.profileId, input.profileId));
-    const [source] = await tx.insert(resumeSources).values(input).returning();
+    const [source] = await tx.insert(resumeSources).values({ ...input, sourceHash: input.sourceHash ?? "legacy-unavailable" }).returning();
     return source;
   });
 }

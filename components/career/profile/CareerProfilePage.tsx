@@ -1,6 +1,7 @@
 "use client";
 import { useActionState } from "react";
 import { saveProfileAction } from "@/app/(dashboard)/profile/actions";
+import { importResumeAction } from "@/app/(dashboard)/profile/resume-actions";
 import { Progress } from "../ui/Primitives";
 
 type Props = {
@@ -25,12 +26,20 @@ const join = (value: unknown) => Array.isArray(value) ? value.join(", ") : "";
 
 export function CareerProfilePage({ profile, completeness }: Props) {
   const [state, formAction, pending] = useActionState(saveProfileAction, null);
+  const [resumeState, resumeAction, resumePending] = useActionState(importResumeAction, null);
   return (
     <section className="career-container cj-page-head" aria-labelledby="profile-title">
       <h1 id="profile-title">Profile</h1>
       <p>Your profile is saved securely and used as evidence for job matching and application materials.</p>
       <Progress value={completeness.score} label="Profile completeness" />
       <article className="cj-card" aria-live="polite"><h2>Next useful field</h2><p>{completeness.nextRecommendedAction}</p></article>
+      <form action={resumeAction} className="cj-card" aria-describedby="resume-status">
+        <h2>Import résumé</h2>
+        <p>Upload a PDF or DOCX up to 10 MB. Original file bytes are processed transiently and not stored.</p>
+        <label>Résumé file<input name="resume" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /></label>
+        <button className="career-btn" type="submit" disabled={resumePending}>{resumePending ? "Importing…" : "Import résumé"}</button>
+        <p id="resume-status" role="status">{resumeState?.message}</p>
+      </form>
       <form action={formAction} className="cj-card" aria-describedby="profile-status">
         <input type="hidden" name="profileId" value={profile.id} />
         <h2>Professional profile</h2>
