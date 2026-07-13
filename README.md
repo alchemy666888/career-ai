@@ -1,6 +1,6 @@
-# AI Job Search
+# Create AI 
 
-AI Job Search is a Next.js App Router product for managing a modern job hunt from discovery through offer decision. It combines job discovery, profile and résumé context, evidence-backed fit evaluation, application preparation, interview planning, and status tracking into one workflow.
+Create AI is a Next.js App Router product for managing a modern job hunt from discovery through offer decision. It combines job discovery, profile and résumé context, evidence-backed fit evaluation, application preparation, interview planning, and status tracking into one workflow.
 
 > **Current product mode:** the app can run locally without authentication, AI, or a database for core demo pages. PostgreSQL, OAuth, email, AI, and live ingestion are optional deployment capabilities controlled by environment variables.
 
@@ -19,7 +19,7 @@ AI Job Search is a Next.js App Router product for managing a modern job hunt fro
 
 ## Project overview
 
-AI Job Search helps job hunters answer five practical questions:
+Create AI helps job hunters answer five practical questions:
 
 1. **What roles should I look at?** Discover or import roles and keep only the relevant ones.
 2. **Which roles are worth applying to?** Compare fit, strengths, risks, and gaps.
@@ -33,7 +33,7 @@ The product is intentionally user-controlled: it can draft, evaluate, track, and
 
 | Area | Details |
 | --- | --- |
-| Product name | AI Job Search |
+| Product name | Create AI |
 | Primary user | Job hunters managing multiple opportunities |
 | Framework | Next.js App Router with React and TypeScript |
 | Styling | Global CSS in `app/globals.css` |
