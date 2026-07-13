@@ -1,0 +1,1 @@
+export const demoStorageKey="careerai-demo-v1"; export function isDemoEnabled(flag=true){return flag} export function resetDemoState(){return {label:"Demo data",storageKey:demoStorageKey,usesNetwork:false,writesDatabase:false}}
