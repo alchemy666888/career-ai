@@ -1,12 +1,11 @@
-import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
-import { enqueueScheduledIngestion } from "@/lib/jobs/ingestion/service";
-import { verifyCronRequest } from "@/lib/server/cron";
+import { GET as runGet, POST as runPost } from "@/app/api/ingestion/jobs/run/route";
 
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
-  if (!verifyCronRequest(request)) return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
-  const result = await enqueueScheduledIngestion(getDb(), "cron");
-  return NextResponse.json({ ok: true, ...result });
+  return runGet(request);
+}
+
+export async function POST(request: Request) {
+  return runPost(request);
 }

@@ -1247,7 +1247,7 @@ feat(matching): add evidence backed fit evaluation
 
 ## T17 — Implement job-specific résumé generation and immutable artifact versions
 
-- [ ] Complete T17.
+- [x] Complete T17.
 
 **Requirements:** TAILOR-001, TAILOR-006, TAILOR-009, TAILOR-010, BR-001 through BR-004, AI-004 through AI-010  
 **Dependencies:** T10, T16
@@ -1305,7 +1305,7 @@ feat(resume): add versioned job specific tailoring
 
 ## T18 — Implement transparent change review, acceptance, rejection, and approval
 
-- [ ] Complete T18.
+- [x] Complete T18.
 
 **Requirements:** TAILOR-002 through TAILOR-007, BR-002 through BR-004, UX-001 through UX-005, NFR-A11Y-001 through NFR-A11Y-004  
 **Dependencies:** T17
@@ -1365,7 +1365,7 @@ feat(resume): add transparent review and approval
 
 ## T19 — Implement controlled résumé exports
 
-- [ ] Complete T19.
+- [x] Complete T19.
 
 **Requirements:** TAILOR-008, BR-004, DEP-002, NFR-SEC-006, NFR-PERF-002, NFR-OBS-006, NFR-OBS-012  
 **Dependencies:** T18
@@ -1428,7 +1428,7 @@ feat(resume): add controlled resume exports
 
 ## T20 — Implement evidence-backed cover-letter generation, rationale, editing, and latest-version persistence
 
-- [ ] Complete T20.
+- [x] Complete T20.
 
 **Requirements:** COVER-001 through COVER-006, COVER-008, BR-001 through BR-004, AI-004 through AI-010  
 **Dependencies:** T14, T15, T16, T17
@@ -1485,7 +1485,7 @@ feat(cover): add evidence backed cover letters
 
 ## T21 — Implement controlled cover-letter exports and application-workspace integration
 
-- [ ] Complete T21.
+- [x] Complete T21.
 
 **Requirements:** COVER-007, TRACK-005, TRACK-007, UX-001 through UX-005, NFR-SEC-006  
 **Dependencies:** T20, T19
@@ -1543,7 +1543,7 @@ feat(cover): add cover exports and workspace integration
 
 ## T22 — Implement structured interview sessions, preparation, and question generation
 
-- [ ] Complete T22.
+- [x] Complete T22.
 
 **Requirements:** INT-001 through INT-003, INT-005 through INT-007, AI-006, BR-001 through BR-004  
 **Dependencies:** T14, T15, T16, T25 is not required; sessions may link directly to job until an application exists
@@ -1604,7 +1604,7 @@ feat(interview): add sessions preparation and questions
 
 ## T23 — Implement answer evaluation, STAR analysis, scoring, and safe improvement guidance
 
-- [ ] Complete T23.
+- [x] Complete T23.
 
 **Requirements:** INT-003, INT-004, INT-006, INT-007, BR-001 through BR-004, AI-004 through AI-010  
 **Dependencies:** T22
@@ -1664,7 +1664,7 @@ feat(interview): add answer evaluation and STAR feedback
 
 ## T24 — Implement post-interview review, thank-you draft, follow-up, and strategy signals
 
-- [ ] Complete T24.
+- [x] Complete T24.
 
 **Requirements:** INT-008, INT-009, LEARN-001 through LEARN-004, BR-001 through BR-005, UX-001 through UX-005  
 **Dependencies:** T23
@@ -1717,7 +1717,7 @@ feat(interview): add post interview review and follow up
 
 ## T25 — Implement persisted applications, status machine, timeline, checklist, and workspace
 
-- [ ] Complete T25.
+- [x] Complete T25.
 
 **Requirements:** TRACK-001, TRACK-003 through TRACK-009, BR-006, BR-008, NFR-MAINT-003  
 **Dependencies:** T12, T16, T19, T21, T24
@@ -1783,7 +1783,7 @@ feat(tracker): persist applications timeline and workspace
 
 ## T26 — Implement accessible dnd-kit Kanban and keyboard status movement
 
-- [ ] Complete T26.
+- [x] Complete T26.
 
 **Requirements:** TRACK-002 through TRACK-004, TRACK-008, NFR-A11Y-001 through NFR-A11Y-004, UX-001 through UX-005  
 **Dependencies:** T25
@@ -1836,7 +1836,7 @@ feat(tracker): add accessible application Kanban
 
 ## T27 — Implement dashboard aggregates, outcomes, stale-work detection, and learning recommendations
 
-- [ ] Complete T27.
+- [x] Complete T27.
 
 **Requirements:** TRACK-009, TRACK-010, LEARN-001 through LEARN-004, NFR-PERF-001, NFR-PERF-004, UX-001 through UX-005  
 **Dependencies:** T24, T25, T26
@@ -1897,7 +1897,7 @@ feat(dashboard): add outcomes aggregates and learning
 
 ## T28 — Isolate browser-local anonymous demo mode
 
-- [ ] Complete T28.
+- [x] Complete T28.
 
 **Requirements:** AUTH-004, FIX-001 through FIX-003, BR-007, NFR-SEC-001, NFR-PRIV-001  
 **Dependencies:** T08, T12, T16, T18, T20, T22, T25
@@ -1949,7 +1949,7 @@ feat(demo): isolate browser local anonymous journey
 
 ## T29 — Assemble protected administration screens and operational controls
 
-- [ ] Complete T29.
+- [x] Complete T29.
 
 **Requirements:** ADMIN-001 through ADMIN-007, AI-010, JOB-004, JOB-011, BR-008, NFR-OBS-012  
 **Dependencies:** T05, T07, T13, T15, T27
@@ -2008,7 +2008,7 @@ feat(admin): add operational administration
 
 ## T30 — Implement account deletion, privacy controls, retention jobs, and user data export
 
-- [ ] Complete T30.
+- [x] Complete T30.
 
 **Requirements:** PRIV-001 through PRIV-007, RES-004, NFR-PRIV-001 through NFR-PRIV-003, NFR-SEC-001, NFR-OBS-008  
 **Dependencies:** T07, T10, T13, T25, T27, T29
@@ -2073,7 +2073,7 @@ feat(privacy): add deletion retention and data export
 
 ## T31 — Add Playwright infrastructure and critical browser-flow coverage
 
-- [ ] Complete T31.
+- [x] Complete T31.
 
 **Requirements:** DEP-002, NFR-SEC-001, NFR-A11Y-001 through NFR-A11Y-004, NFR-OBS-013, all mandatory critical browser flows  
 **Dependencies:** T28, T29, T30
@@ -2147,7 +2147,7 @@ test(e2e): cover critical job hunter journeys
 
 ## T32 — Complete security, accessibility, performance, and observability hardening
 
-- [ ] Complete T32.
+- [x] Complete T32.
 
 **Requirements:** NFR-SEC-001 through NFR-SEC-007, NFR-A11Y-001 through NFR-A11Y-004, NFR-PERF-001 through NFR-PERF-004, NFR-REL-001 through NFR-REL-004, NFR-OBS-001 through NFR-OBS-014  
 **Dependencies:** T31
@@ -2210,7 +2210,7 @@ chore: harden security accessibility and observability
 
 ## T33 — Consolidate deployment documentation, environment references, and operational runbooks
 
-- [ ] Complete T33.
+- [x] Complete T33.
 
 **Requirements:** DEP-001 through DEP-005, PRIV-006, NFR-OBS-012, NFR-OBS-014, documentation requirements  
 **Dependencies:** T32
@@ -2304,7 +2304,7 @@ docs: add deployment configuration and runbooks
 
 ## T34 — Run final acceptance gates and prepare the single pull request
 
-- [ ] Complete T34.
+- [x] Complete T34.
 
 **Requirements:** All approved requirements, all approved design decisions, DEP-001, requirement traceability  
 **Dependencies:** T33

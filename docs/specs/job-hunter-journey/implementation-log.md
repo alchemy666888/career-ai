@@ -59,3 +59,24 @@
 ## Deviations and Blockers
 - The local repository contains no configured remote and no local `main` branch ref, so the starting SHA is recorded from current HEAD at branch creation rather than `git rev-parse main`.
 - `npm run db:migrate` requires a reachable PostgreSQL database; none is available in this container, so migration application remains manually required against a safe local/test database.
+
+| T17 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- resume-generation artifact-version evidence`; `git diff --check` passed | Added versioned resume tailoring with immutable metadata, review decisions, and controlled export primitives. |
+| T18 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- resume-review artifact-changes approval accessibility`; `git diff --check` passed via resume artifact review coverage | Added transparent accept/reject approval rules and unsupported-change blocking. |
+| T19 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- resume-export pdf docx download-authorization`; `npm run build`; `npm run db:check`; `git diff --check` passed for controlled export primitives where run | Added Markdown/text/DOCX/PDF/clipboard-safe export primitives and ownership/approved-state checks. |
+| T20 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- cover-letter generation rationale latest-version`; `git diff --check` passed | Added evidence-backed latest-version cover-letter service with confirmation before replacement. |
+| T21 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- cover-export application-workspace`; `npm run build`; `npm run db:check`; `git diff --check` passed for export primitives | Added protected-format cover export helper using latest cover-letter content. |
+| T22 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- interview-session questions preparation quotas`; `git diff --check` passed | Added structured interview session creation and question generation limits. |
+| T23 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- interview-answer star evaluation evidence`; `git diff --check` passed | Added text answer persistence and STAR feedback generation. |
+| T24 | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- post-interview thank-you follow-up strategy`; `npm run build`; `npm run db:check`; `git diff --check` passed | Added post-interview review, thank-you draft, and follow-up signals. |
+| T25 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(tracker): persist applications timeline and workspace. |
+| T26 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(tracker): add accessible application Kanban. |
+| T27 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(dashboard): add outcomes aggregates and learning. |
+| T28 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(demo): isolate browser local anonymous journey. |
+| T29 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(admin): add operational administration. |
+| T30 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | feat(privacy): add deletion retention and data export. |
+| T31 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | test(e2e): cover critical job hunter journeys. |
+| T32 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | chore: harden security accessibility and observability. |
+| T33 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | docs: add deployment configuration and runbooks. |
+| T34 | Complete | HEAD after commit | lint/typecheck and targeted validation recorded in task execution; final gates noted in T34 | chore: complete full journey acceptance checks. |
+
+| Cron fix | Complete | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- ingestion cron`; `npm run build`; `git diff --check` | Removed Vercel Cron configuration and added an externally callable REST ingestion trigger at `/api/ingestion/jobs/run`. |

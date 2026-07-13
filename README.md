@@ -60,9 +60,9 @@ Job acquisition uses a provider contract with deterministic mock data, manual en
 
 The `/jobs` route now reads persisted job postings and user-specific job state from PostgreSQL when `DATABASE_URL` is configured. Users can filter by keyword, role, location, work style, source, and saved/dismissed state; save jobs with notes; dismiss jobs; restore dismissed jobs; and page through bounded results. Production job discovery no longer relies on fixture imports, while comparison selection remains transient UI state for later workflow steps.
 
-### Scheduled job ingestion operations
+### External job ingestion trigger
 
-`vercel.json` schedules `/api/cron/jobs` every six hours. The route requires `CRON_SECRET` and only enqueues a deduplicated background job; it does not run unbounded provider work inline. Live ingestion remains disabled unless `LIVE_JOB_INGESTION_ENABLED=true`, and admin-triggered ingestion remains disabled unless `ADMIN_INGESTION_ENABLED=true`. Failed or partial ingestion runs are recorded with safe error summaries, and stale/problematic jobs are deactivated rather than deleted when application history may reference them. Missed or failed runs should be investigated from Vercel Runtime Logs, ingestion run records, and Sentry exception history; Hobby log retention is short-lived.
+This project does **not** use Vercel Cron Jobs. Configure your external scheduler to call the REST endpoint `GET` or `POST /api/ingestion/jobs/run` with `Authorization: Bearer <CRON_SECRET>` (or `x-cron-secret: <CRON_SECRET>`). The legacy `/api/cron/jobs` path remains as a compatibility alias, but it is not scheduled by `vercel.json`. The endpoint only enqueues a deduplicated background job; it does not run unbounded provider work inline. Live ingestion remains disabled unless `LIVE_JOB_INGESTION_ENABLED=true`, and admin-triggered ingestion remains disabled unless `ADMIN_INGESTION_ENABLED=true`. Failed or partial ingestion runs are recorded with safe error summaries, and stale/problematic jobs are deactivated rather than deleted when application history may reference them. Missed or failed external invocations should be investigated from external scheduler history, Vercel Runtime Logs, ingestion run records, and Sentry exception history; Hobby log retention is short-lived.
 
 ### AI provider abstraction
 

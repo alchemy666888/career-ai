@@ -6,8 +6,8 @@ vi.mock("@/lib/env", () => ({ getServerEnv: () => ({ CRON_SECRET: "test-cron-sec
 
 describe("ingestion cron jobspy admin-jobs retention", () => {
   it("rejects unauthorized cron requests and accepts configured secrets", () => {
-    expect(verifyCronRequest(new Request("https://example.test/api/cron/jobs"))).toBe(false);
-    expect(verifyCronRequest(new Request("https://example.test/api/cron/jobs", { headers: { authorization: "Bearer test-cron-secret" } }))).toBe(true);
+    expect(verifyCronRequest(new Request("https://example.test/api/ingestion/jobs/run"))).toBe(false);
+    expect(verifyCronRequest(new Request("https://example.test/api/ingestion/jobs/run", { headers: { authorization: "Bearer test-cron-secret" } }))).toBe(true);
   });
 
   it("keeps JobSpy inactive when live ingestion is disabled", async () => {
