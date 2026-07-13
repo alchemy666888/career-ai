@@ -14,7 +14,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:check": "drizzle-kit check",
     "db:reset:dev": "node scripts/db/reset-dev.mjs",
-    "db:seed:dev": "node scripts/db/seed-dev.mjs"
+    "db:seed:dev": "node scripts/db/seed-dev.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@neondatabase/serverless": "latest",
@@ -42,6 +43,7 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "@playwright/test": "1.54.1"
   }
 }

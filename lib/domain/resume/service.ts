@@ -1,4 +1,6 @@
 import { and, eq, isNull } from "drizzle-orm";
+import { z } from "zod";
+import type { AiEvidence } from "@/lib/ai/contracts";
 import { writeAuditEvent } from "@/lib/audit";
 import type { Database } from "@/lib/db";
 import { evidenceItems, profiles, profileSections, resumeSources } from "@/lib/db/schema";
@@ -97,3 +99,22 @@ async function recalculateCompleteness(db: Database, userId: string, profileId: 
   const completeness = calculateProfileCompleteness({ ...profile, evidenceCount: evidence.length, targetRoles: profile.targetRoles as unknown[], preferredLocations: profile.preferredLocations as unknown[] });
   await db.update(profiles).set({ completenessScore: completeness.score, updatedAt: new Date() }).where(and(eq(profiles.id, profileId), eq(profiles.userId, userId)));
 }
+export type ResumeArtifactState = "working" | "approved" | "archived";
+export type ResumeChangeDecision = "pending" | "accepted" | "rejected";
+export type ResumeChange = { id: string; section: string; originalText: string; suggestedText: string; reason: string; jobRequirement: string; evidenceRefs: string[]; supportStatus: "supported" | "unsupported"; decision: ResumeChangeDecision };
+export type ResumeArtifact = { id: string; ownerId: string; jobId: string; version: number; state: ResumeArtifactState; content: string; changes: ResumeChange[]; provider: string; model: string; promptVersion: string; templateVersion: string; createdAt: string; approvedAt?: string };
+export type ResumeStore = { artifacts: ResumeArtifact[] };
+export const resumeDocumentSchema = z.object({ summary: z.string(), bullets: z.array(z.string()), skills: z.array(z.string()) });
+
+export function nextResumeVersion(store: ResumeStore, ownerId: string, jobId: string) { return Math.max(0, ...store.artifacts.filter(a => a.ownerId === ownerId && a.jobId === jobId).map(a => a.version)) + 1; }
+export function generateJobSpecificResume(store: ResumeStore, input: { ownerId: string; jobId: string; jobTitle: string; company: string; sourceResume: string; evidence: AiEvidence[]; fitNarrative?: string; provider?: string; model?: string; promptVersion?: string; templateVersion?: string }) {
+  const supportedEvidence = input.evidence.filter(e => e.content.trim().length > 0);
+  const version = nextResumeVersion(store, input.ownerId, input.jobId);
+  const changes: ResumeChange[] = supportedEvidence.slice(0, 4).map((e, index) => ({ id: `chg-${version}-${index + 1}`, section: index === 0 ? "summary" : "experience", originalText: input.sourceResume.slice(0, 120), suggestedText: `${e.title}: ${e.content}`, reason: `Aligns ${input.jobTitle} resume with approved evidence.`, jobRequirement: input.fitNarrative ?? `Relevant to ${input.company} requirements`, evidenceRefs: [e.id], supportStatus: "supported", decision: "pending" }));
+  const artifact: ResumeArtifact = { id: `resume-${input.jobId}-${version}`, ownerId: input.ownerId, jobId: input.jobId, version, state: "working", content: [input.sourceResume, `Target role: ${input.jobTitle} at ${input.company}`, ...changes.map(c => c.suggestedText)].join("\n"), changes, provider: input.provider ?? "fake", model: input.model ?? "deterministic-fake-v1", promptVersion: input.promptVersion ?? "resume-tailor-v1", templateVersion: input.templateVersion ?? "ats-resume-v1", createdAt: new Date(0).toISOString() };
+  store.artifacts.push(artifact); return artifact;
+}
+export function deriveManualResumeEdit(store: ResumeStore, artifactId: string, ownerId: string, content: string) { const base = assertOwned(store, artifactId, ownerId); const artifact = { ...base, id: `${base.id}-manual-${Date.now()}`, version: nextResumeVersion(store, ownerId, base.jobId), state: "working" as const, content, changes: [], createdAt: new Date(0).toISOString(), approvedAt: undefined }; store.artifacts.push(artifact); return artifact; }
+export function decideResumeChange(store: ResumeStore, input: { ownerId: string; artifactId: string; changeId: string; decision: ResumeChangeDecision }) { const artifact = assertOwned(store, input.artifactId, input.ownerId); const change = artifact.changes.find(c => c.id === input.changeId); if (!change) throw new Error("Change not found"); if (input.decision === "accepted" && change.supportStatus !== "supported") throw new Error("Unsupported changes require additional evidence before acceptance"); change.decision = input.decision; return change; }
+export function approveResumeArtifact(store: ResumeStore, artifactId: string, ownerId: string) { const artifact = assertOwned(store, artifactId, ownerId); const accepted = artifact.changes.filter(c => c.decision === "accepted"); if (artifact.changes.some(c => c.decision === "accepted" && c.supportStatus !== "supported")) throw new Error("Unsupported accepted change"); const approved: ResumeArtifact = { ...artifact, id: `${artifact.id}-approved`, version: nextResumeVersion(store, ownerId, artifact.jobId), state: "approved", content: accepted.length ? accepted.map(c => c.suggestedText).join("\n") : artifact.content, approvedAt: new Date(0).toISOString() }; store.artifacts.push(approved); return approved; }
+export function assertOwned(store: ResumeStore, artifactId: string, ownerId: string) { const artifact = store.artifacts.find(a => a.id === artifactId && a.ownerId === ownerId); if (!artifact) throw new Error("Artifact not found"); return artifact; }
