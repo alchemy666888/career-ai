@@ -777,7 +777,7 @@ feat(profile): add secure resume parsing and import
 
 ## T10 — Implement résumé replacement, correction, deletion, and profile reconciliation
 
-- [ ] Complete T10.
+- [x] Complete T10.
 
 **Requirements:** RES-003 through RES-005, PRIV-002, PRIV-003, BR-002, BR-003, UX-002, NFR-PRIV-003, NFR-OBS-004  
 **Dependencies:** T09
@@ -840,7 +840,7 @@ feat(profile): add resume replacement and deletion
 
 ## T11 — Implement job-provider contracts, normalization, deduplication, and manual import
 
-- [ ] Complete T11.
+- [x] Complete T11.
 
 **Requirements:** JOB-001, JOB-002, JOB-005, JOB-006, JOB-011, BR-006, NFR-SEC-002, NFR-SEC-006  
 **Dependencies:** T04, T07, T10
@@ -911,7 +911,7 @@ feat(jobs): add providers normalization and manual import
 
 ## T12 — Implement PostgreSQL job search, discovery, saved state, comparison, and pagination
 
-- [ ] Complete T12.
+- [x] Complete T12.
 
 **Requirements:** JOB-007 through JOB-010, NFR-PERF-001, NFR-PERF-004, UX-001 through UX-005, BR-006  
 **Dependencies:** T11
@@ -980,7 +980,7 @@ feat(jobs): persist job discovery search and user state
 
 ## T13 — Implement scheduled ingestion, retention state, and ingestion administration
 
-- [ ] Complete T13.
+- [x] Complete T13.
 
 **Requirements:** JOB-002 through JOB-004, JOB-006, JOB-011, ADMIN-002, NFR-REL-001 through NFR-REL-004, NFR-OBS-012  
 **Dependencies:** T07, T11, T12
@@ -1052,7 +1052,7 @@ feat(jobs): add scheduled ingestion and operations
 
 ## T14 — Implement provider-independent AI contracts, DeepSeek adapter, and deterministic fake
 
-- [ ] Complete T14.
+- [x] Complete T14.
 
 **Requirements:** AI-001 through AI-005, AI-009, AI-010, BR-001 through BR-004, NFR-MAINT-002, NFR-OBS-006 through NFR-OBS-009  
 **Dependencies:** T02, T06, T07, T10, T11
@@ -1118,7 +1118,7 @@ feat(ai): add DeepSeek provider abstraction and fake
 
 ## T15 — Implement AI quotas, usage accounting, concurrency, and kill-switch behavior
 
-- [ ] Complete T15.
+- [x] Complete T15.
 
 **Requirements:** AI-006 through AI-010, ADMIN-003, ADMIN-004, NFR-SEC-007, NFR-REL-001, NFR-OBS-003 through NFR-OBS-012  
 **Dependencies:** T07, T14
@@ -1180,7 +1180,7 @@ feat(ai): enforce quotas usage and kill switch
 
 ## T16 — Implement evidence-backed fit evaluation and job-detail integration
 
-- [ ] Complete T16.
+- [x] Complete T16.
 
 **Requirements:** MATCH-001 through MATCH-006, BR-001 through BR-005, AI-004 through AI-010, UX-001 through UX-005  
 **Dependencies:** T12, T14, T15

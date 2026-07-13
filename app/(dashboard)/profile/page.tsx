@@ -9,5 +9,5 @@ export default async function ProfilePage() {
   }
   const user = await requireActiveUser();
   const view = await getProfileView(getDb(), user.id);
-  return <CareerProfilePage profile={view.profile} completeness={view.completeness} />;
+  return <CareerProfilePage profile={view.profile} completeness={view.completeness} evidence={view.evidence} resumes={view.resumes} />;
 }

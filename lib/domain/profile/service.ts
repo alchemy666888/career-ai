@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import type { Database } from "@/lib/db";
-import { evidenceItems, profiles, profileSections } from "@/lib/db/schema";
+import { evidenceItems, profiles, profileSections, resumeSources } from "@/lib/db/schema";
 import { writeAuditEvent } from "@/lib/audit";
 import { logEvent } from "@/lib/observability/logger";
 import { withObservedSpan } from "@/lib/observability/tracing";
@@ -21,11 +21,12 @@ export async function getProfileView(db: Database, userId: string) {
   const profile = await getOrCreateProfileForUser(db, userId);
   const sections = await db.query.profileSections.findMany({ where: eq(profileSections.profileId, profile.id) });
   const evidence = await db.query.evidenceItems.findMany({ where: eq(evidenceItems.profileId, profile.id) });
+  const resumes = await db.query.resumeSources.findMany({ where: eq(resumeSources.profileId, profile.id), orderBy: (table, { desc }) => [desc(table.createdAt)] });
   const skills = sections.find((section) => section.kind === "skills")?.content as string[] | undefined;
   const experience = sections.find((section) => section.kind === "experience")?.content as string[] | undefined;
   const education = sections.find((section) => section.kind === "education")?.content as string[] | undefined;
   const completeness = calculateProfileCompleteness({ ...profile, skills, experience, education, evidenceCount: evidence.length, targetRoles: profile.targetRoles as unknown[], preferredLocations: profile.preferredLocations as unknown[] });
-  return { profile: { ...profile, skills: skills ?? [], experience: experience ?? [], education: education ?? [], nextRecommendedAction: completeness.nextRecommendedAction }, evidence, completeness };
+  return { profile: { ...profile, skills: skills ?? [], experience: experience ?? [], education: education ?? [], nextRecommendedAction: completeness.nextRecommendedAction }, evidence, resumes, completeness };
 }
 
 export async function updateProfileForUser(db: Database, userId: string, input: ProfileFormInput) {
