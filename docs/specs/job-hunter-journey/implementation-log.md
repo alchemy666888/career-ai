@@ -43,6 +43,16 @@
 
 | T11 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- job provider normalize dedupe manual-import`; `git diff --check` passed. | Added provider contracts, deterministic mock/manual providers, disabled dynamic JobSpy adapter, normalization/dedupe helpers, manual import action/UI, tests, and README notes. |
 
+| T12 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- job-search filters pagination user-jobs`; `git diff --check` passed. | Replaced `/jobs` with persisted PostgreSQL-backed search, bounded filters/pagination, owner-scoped save/dismiss/restore actions, accessible empty states, and docs/tests. |
+
+| T13 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- ingestion cron jobspy admin-jobs retention`; `npm run build`; `npm run db:check`; `git diff --check` passed. | Added protected cron route, deduplicated ingestion enqueueing, bounded worker/admin operations, safe run/error retention states, Vercel cron config, tests, and runbook notes. |
+
+| T14 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- ai-provider deepseek fake prompts schemas evidence`; `git diff --check` passed. | Added provider-independent AI contracts, deterministic fake, DeepSeek adapter with safe errors/retry/timeout, prompt versions, Zod schema validation, evidence ID checks, docs, and tests. |
+
+| T15 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- ai-quota concurrency usage kill-switch`; `git diff --check` passed. | Added AI quota defaults, kill-switch-aware usage wrapper, safe usage records and admin aggregates, docs, and tests. |
+
+| T16 | Ready to commit | HEAD after commit | `npm run lint`; `npm run typecheck`; `npm test -- matching evidence fit-evaluation job-detail`; `npm run build`; `npm run db:check`; `git diff --check` passed. | Added evidence-backed fit evaluation snapshots, sparse-evidence confidence guardrails, owner-scoped job detail integration, tests, and docs. |
+
 ## Manual Verification Required
 - No live external-service smoke tests performed at baseline.
 

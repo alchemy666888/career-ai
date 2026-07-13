@@ -14,3 +14,27 @@ export async function importManualJobAction(_: unknown, formData: FormData) {
     return { ok: false, message: "Manual import failed validation. No external URL was fetched." };
   }
 }
+
+export async function saveJobAction(formData: FormData) {
+  const user = await requireActiveUser();
+  await import("@/lib/jobs/service").then(({ setUserJobState }) => setUserJobState(getDb(), { userId: user.id, jobId: String(formData.get("jobId") ?? ""), action: "save", notes: String(formData.get("notes") ?? "") || undefined }));
+  revalidatePath("/jobs");
+}
+
+export async function dismissJobAction(formData: FormData) {
+  const user = await requireActiveUser();
+  await import("@/lib/jobs/service").then(({ setUserJobState }) => setUserJobState(getDb(), { userId: user.id, jobId: String(formData.get("jobId") ?? ""), action: "dismiss" }));
+  revalidatePath("/jobs");
+}
+
+export async function restoreJobAction(formData: FormData) {
+  const user = await requireActiveUser();
+  await import("@/lib/jobs/service").then(({ setUserJobState }) => setUserJobState(getDb(), { userId: user.id, jobId: String(formData.get("jobId") ?? ""), action: "restore" }));
+  revalidatePath("/jobs");
+}
+
+
+export async function importManualJobFormAction(formData: FormData) {
+  await importManualJobAction(null, formData);
+  revalidatePath("/jobs");
+}
